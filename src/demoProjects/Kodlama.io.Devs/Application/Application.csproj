@@ -14,7 +14,6 @@
 
     <ItemGroup>
         <Folder Include="Features"/>
-        <Folder Include="Features\ProgrammingLanguages\Queries\GetByIdProgrammingLanguage"/>
         <Folder Include="Services"/>
     </ItemGroup>
 

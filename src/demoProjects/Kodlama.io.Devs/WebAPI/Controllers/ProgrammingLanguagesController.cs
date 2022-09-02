@@ -1,5 +1,6 @@
 ﻿using Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLanguage;
 using Application.Features.ProgrammingLanguages.Commands.DeleteProgrammingLanguage;
+using Application.Features.ProgrammingLanguages.Queries.GetByIdProgrammingLanguage;
 using Application.Features.ProgrammingLanguages.Queries.GetListProgrammingLanguage;
 using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,14 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class ProgrammingLanguagesController : BaseController
 {
+    [HttpGet("{Id}")]
+    public async Task<IActionResult> GetById(
+        [FromRoute] GetByIdProgrammingLanguageQuery getByIdProgrammingLanguageQuery)
+    {
+        var programmingLanguageGetByIdDto = await Mediator.Send(getByIdProgrammingLanguageQuery);
+        return Ok(programmingLanguageGetByIdDto);
+    }
+
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
