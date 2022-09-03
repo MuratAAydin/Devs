@@ -1,5 +1,6 @@
 ﻿using Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLanguage;
 using Application.Features.ProgrammingLanguages.Commands.DeleteProgrammingLanguage;
+using Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage;
 using Application.Features.ProgrammingLanguages.Queries.GetByIdProgrammingLanguage;
 using Application.Features.ProgrammingLanguages.Queries.GetListProgrammingLanguage;
 using Core.Application.Requests;
@@ -39,6 +40,14 @@ public class ProgrammingLanguagesController : BaseController
         [FromBody] DeleteProgrammingLanguageCommand deleteProgrammingLanguageCommand)
     {
         var result = await Mediator.Send(deleteProgrammingLanguageCommand);
+        return Created("", result);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> Put(
+        [FromBody] UpdateProgrammingLanguageCommand updateProgrammingLanguageCommand)
+    {
+        var result = await Mediator.Send(updateProgrammingLanguageCommand);
         return Created("", result);
     }
 }
