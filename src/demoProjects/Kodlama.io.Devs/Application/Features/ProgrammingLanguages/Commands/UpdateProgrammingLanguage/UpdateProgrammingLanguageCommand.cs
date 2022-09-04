@@ -1,7 +1,9 @@
-﻿using Application.Features.ProgrammingLanguages.Dtos;
+﻿using System.Diagnostics;
+using Application.Features.ProgrammingLanguages.Dtos;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions;
 using Domain.Entities;
 using MediatR;
 
@@ -32,18 +34,14 @@ public class UpdateProgrammingLanguageCommand : IRequest<UpdateProgrammingLangua
         public async Task<UpdateProgrammingLanguageDto> Handle(UpdateProgrammingLanguageCommand request,
             CancellationToken cancellationToken)
         {
-            var programmingLanguage =
-                await _programmingLanguageRepository.GetAsync(e => e.Id == request.Id);
-            _programmingLanguageBusinessRules.ProgrammingLanguageShouldExistWhenRequested(programmingLanguage);
+            ProgrammingLanguage? programmingLanguage = await _programmingLanguageRepository.GetAsync(e => e.Id == request.Id);
 
+            _programmingLanguageBusinessRules.ProgrammingLanguageShouldExistWhenRequested(programmingLanguage);
             await _programmingLanguageBusinessRules.ProgrammingLanguageNameCanNotBeDuplicatedWhenInserted(request.Name);
 
-            var convertedProgrammingLanguage = _mapper.Map<ProgrammingLanguage>(request);
-            var updatedProgrammingLanguage =
-                await _programmingLanguageRepository.UpdateAsync(convertedProgrammingLanguage);
-
-            var updateProgrammingLanguageDto =
-                _mapper.Map<UpdateProgrammingLanguageDto>(updatedProgrammingLanguage);
+            ProgrammingLanguage? mappedProgrammingLanguage = _mapper.Map(request, programmingLanguage);
+            ProgrammingLanguage updatedProgrammingLanguage = await _programmingLanguageRepository.UpdateAsync(mappedProgrammingLanguage);
+            UpdateProgrammingLanguageDto updateProgrammingLanguageDto = _mapper.Map<UpdateProgrammingLanguageDto>(updatedProgrammingLanguage);
 
             return updateProgrammingLanguageDto;
         }
