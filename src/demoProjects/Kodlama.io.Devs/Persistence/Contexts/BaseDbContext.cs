@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Core.Security.Entities;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -14,6 +15,9 @@ public class BaseDbContext : DbContext
     protected IConfiguration Configuration { get; set; }
     public DbSet<ProgrammingLanguage> ProgrammingLanguages { get; set; }
     public DbSet<Technology> Technologies { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<OperationClaim> OperationClaims { get; set; }
+    public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -40,6 +44,36 @@ public class BaseDbContext : DbContext
             a.Property(p => p.Name).HasColumnName("Name");
 
             a.HasOne(p => p.ProgrammingLanguage);
+        });
+
+        modelBuilder.Entity<User>(a =>
+        {
+            a.ToTable("Users").HasKey(k => k.Id);
+            a.Property(p => p.FirstName).HasColumnName("FirstName");
+            a.Property(p => p.LastName).HasColumnName("LastName");
+            a.Property(p => p.Email).HasColumnName("Email");
+            a.Property(p => p.PasswordSalt).HasColumnName("PasswordSalt");
+            a.Property(p => p.PasswordHash).HasColumnName("PasswordHash");
+            a.Property(p => p.Status).HasColumnName("Status");
+            a.Property(p => p.AuthenticatorType).HasColumnName("AuthenticatorType");
+        });
+
+        modelBuilder.Entity<OperationClaim>(a =>
+        {
+            a.ToTable("OperationClaims").HasKey(k => k.Id);
+            a.Property(p => p.Id).HasColumnName("Id");
+            a.Property(p => p.Name).HasColumnName("Name");
+        });
+
+        modelBuilder.Entity<UserOperationClaim>(a =>
+        {
+            a.ToTable("UserOperationClaims").HasKey(k => k.Id);
+            a.Property(p => p.Id).HasColumnName("Id");
+            a.Property(p => p.UserId).HasColumnName("UserId");
+            a.Property(p => p.OperationClaimId).HasColumnName("OperationClaimId");
+
+            a.HasOne(p => p.User);
+            a.HasOne(p => p.OperationClaim);
         });
 
         ProgrammingLanguage[] programmingLanguageEntitySeeds = { new(1, "Java"), new(2, "C#") };
