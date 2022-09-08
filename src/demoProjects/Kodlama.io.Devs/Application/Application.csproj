@@ -13,7 +13,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Features"/>
+        <Folder Include="Features\Technologies\Models"/>
+        <Folder Include="Features\Technologies\Queries"/>
+        <Folder Include="Features\Technologies\Rules"/>
         <Folder Include="Services"/>
     </ItemGroup>
 
