@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
+using Application.Features.Auths.Rules;
 using Application.Features.ProgrammingLanguages.Rules;
 using Application.Features.Technologies.Rules;
+using Application.Services.AuthService;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using MediatR;
@@ -18,10 +20,12 @@ public static class ApplicationServiceRegistration
 
         services.AddScoped<ProgrammingLanguageBusinessRules>();
         services.AddScoped<TechnologyBusinessRules>();
+        services.AddScoped<AuthBusinessRules>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
 
+        services.AddScoped<IAuthService, AuthManager>();
         /*
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
