@@ -4,8 +4,11 @@ using Core.Security.OtpAuthenticator;
 using Core.Security.OtpAuthenticator.OtpNet;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application;
+namespace Core.Security;
 
+/*
+ * TODO its not working and idk
+ */
 public static class SecurityServiceRegistration
 {
     public static IServiceCollection AddSecurityServices(this IServiceCollection services)
