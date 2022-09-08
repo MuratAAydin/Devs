@@ -14,4 +14,11 @@ public class AuthsController : BaseController
         var result = await Mediator.Send(loginCommand);
         return Created("", result);
     }
+
+    [HttpPost("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterCommand registerCommand)
+    {
+        var result = await Mediator.Send(registerCommand);
+        return Created("", result);
+    }
 }
