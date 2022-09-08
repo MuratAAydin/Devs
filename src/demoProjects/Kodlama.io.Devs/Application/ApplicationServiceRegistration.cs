@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Application.Features.ProgrammingLanguages.Rules;
+using Application.Features.Technologies.Rules;
 using Core.Application.Pipelines.Validation;
 using FluentValidation;
 using MediatR;
@@ -16,6 +17,7 @@ public static class ApplicationServiceRegistration
 
 
         services.AddScoped<ProgrammingLanguageBusinessRules>();
+        services.AddScoped<TechnologyBusinessRules>();
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
