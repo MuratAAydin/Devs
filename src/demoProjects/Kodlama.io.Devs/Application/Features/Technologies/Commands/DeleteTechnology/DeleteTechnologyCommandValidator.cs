@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Application.Features.Technologies.Commands.DeleteTechnology;
 
-public class DeleteTechnologyCommandValidator : AbstractValidator<CreateTechnologyCommand>
+public class DeleteTechnologyCommandValidator : AbstractValidator<DeleteTechnologyCommand>
 {
     public DeleteTechnologyCommandValidator()
     {
