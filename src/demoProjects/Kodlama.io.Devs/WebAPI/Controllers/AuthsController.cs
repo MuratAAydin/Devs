@@ -1,0 +1,17 @@
+﻿using Application.Features.Auths.Commands.Login;
+using Application.Features.Auths.Commands.Register;
+using Microsoft.AspNetCore.Mvc;
+
+namespace WebAPI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class AuthsController : BaseController
+{
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginCommand loginCommand)
+    {
+        var result = await Mediator.Send(loginCommand);
+        return Created("", result);
+    }
+}
