@@ -1,4 +1,5 @@
 ﻿using Application.Services.Repositories;
+using Core.Security.JWT;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,10 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
         services.AddScoped<ITechnologyRepository, TechnologyRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
+        services.AddScoped<IOperationClaimRepository, OperationClaimRepository>();
+        services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+        services.AddScoped<ITokenHelper, JwtHelper>();
 
         return services;
     }
