@@ -13,7 +13,9 @@ public class MappingProfiles : Profile
     {
         CreateMap<GitHubConnection, GitHubConnectionListDto>().ReverseMap();
         CreateMap<GitHubConnection, CreatedGitHubConnectDto>().ReverseMap();
+        CreateMap<GitHubConnection, DeletedGitHubConnectDto>().ReverseMap();
         CreateMap<GitHubConnection, CreateGitHubConnectionCommand>().ReverseMap();
+        CreateMap<GitHubConnection, Task<GitHubConnection>>().ReverseMap();
         CreateMap<IPaginate<GitHubConnection>, GitHubConnectionListModel>().ReverseMap();
     }
 }
