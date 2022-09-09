@@ -19,7 +19,7 @@ public class BaseDbContext : DbContext
     public DbSet<OperationClaim> OperationClaims { get; set; }
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
-    public DbSet<GitHubLink> GitHubLinks { get; set; }
+    public DbSet<GitHubConnection> GitHubConnections { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -78,12 +78,25 @@ public class BaseDbContext : DbContext
             a.HasOne(p => p.OperationClaim);
         });
 
+        modelBuilder.Entity<GitHubConnection>(a =>
+        {
+            a.ToTable("GitHubConnections").HasKey(k => k.Id);
+            a.Property(p => p.Id).HasColumnName("Id");
+            a.Property(p => p.UserId).HasColumnName("UserId");
+            a.Property(p => p.Name).HasColumnName("Name");
+
+            a.HasOne(p => p.User);
+        });
+
         ProgrammingLanguage[] programmingLanguageEntitySeeds = { new(1, "Java"), new(2, "C#") };
 
         Technology[] technologiesEntitySeeds =
             { new(1, 1, "Spring"), new(2, 2, "ASP.NET"), new(3, 1, "JSP") };
 
+        GitHubConnection[] gitHubConnectionEntitySeeds = { new(1, 1, "github.com") };
+
         modelBuilder.Entity<ProgrammingLanguage>().HasData(programmingLanguageEntitySeeds);
         modelBuilder.Entity<Technology>().HasData(technologiesEntitySeeds);
+        modelBuilder.Entity<GitHubConnection>().HasData(gitHubConnectionEntitySeeds);
     }
 }
