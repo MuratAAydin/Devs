@@ -1,4 +1,6 @@
 ﻿using Application.Features.GitHubConnections.Commands.CreateGitHubConnection;
+using Application.Features.GitHubConnections.Queries.GetListGitHubConnectionList;
+using Core.Application.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -14,4 +16,11 @@ public class GitHubConnectionsController : BaseController
         return Created("", result);
     }
 
+    [HttpGet("GetList")]
+    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    {
+        GetListGitHubConnectionListQuery getListGitHubConnectionListQuery = new() { PageRequest = pageRequest };
+        var result = await Mediator.Send(getListGitHubConnectionListQuery);
+        return Ok(result);
+    }
 }
