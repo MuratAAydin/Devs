@@ -1,4 +1,6 @@
 ﻿using Application.Features.GitHubConnections.Commands.CreateGitHubConnection;
+using Application.Features.GitHubConnections.Commands.DeleteGitHubConnection;
+using Application.Features.GitHubConnections.Commands.UpdateGitHubConnection;
 using Application.Features.GitHubConnections.Dtos;
 using Application.Features.GitHubConnections.Models;
 using AutoMapper;
@@ -14,7 +16,10 @@ public class MappingProfiles : Profile
         CreateMap<GitHubConnection, GitHubConnectionListDto>().ReverseMap();
         CreateMap<GitHubConnection, CreatedGitHubConnectDto>().ReverseMap();
         CreateMap<GitHubConnection, DeletedGitHubConnectDto>().ReverseMap();
+        CreateMap<GitHubConnection, UpdatedGitHubConnectDto>().ReverseMap();
         CreateMap<GitHubConnection, CreateGitHubConnectionCommand>().ReverseMap();
+        CreateMap<GitHubConnection, DeleteGitHubConnectionCommand>().ReverseMap();
+        CreateMap<GitHubConnection, UpdateGitHubConnectionCommand>().ReverseMap();
         CreateMap<GitHubConnection, Task<GitHubConnection>>().ReverseMap();
         CreateMap<IPaginate<GitHubConnection>, GitHubConnectionListModel>().ReverseMap();
     }
