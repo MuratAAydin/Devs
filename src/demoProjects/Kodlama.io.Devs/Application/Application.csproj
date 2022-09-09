@@ -13,9 +13,15 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Features\Auths\Models"/>
+        <Folder Include="Features\Auths\Profiles"/>
+        <Folder Include="Features\Auths\Queries"/>
+        <Folder Include="Features\GitHubConnections\Rules"/>
         <Folder Include="Features\Technologies\Models"/>
         <Folder Include="Features\Technologies\Queries"/>
-        <Folder Include="Services"/>
+        <Folder Include="Features\Users\Models"/>
+        <Folder Include="Features\Users\Queries"/>
+        <Folder Include="Features\Users\Rules"/>
     </ItemGroup>
 
     <ItemGroup>
