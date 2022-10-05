@@ -7,28 +7,28 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0"/>
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.1"/>
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1"/>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.1" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Features\Auths\Models"/>
-        <Folder Include="Features\Auths\Profiles"/>
-        <Folder Include="Features\Auths\Queries"/>
-        <Folder Include="Features\GitHubConnections\Rules"/>
-        <Folder Include="Features\Technologies\Models"/>
-        <Folder Include="Features\Technologies\Queries"/>
-        <Folder Include="Features\Users\Models"/>
-        <Folder Include="Features\Users\Queries"/>
-        <Folder Include="Features\Users\Rules"/>
+        <Folder Include="Features\Auths\Models" />
+        <Folder Include="Features\Auths\Profiles" />
+        <Folder Include="Features\Auths\Queries" />
+        <Folder Include="Features\GitHubConnections\Rules" />
+        <Folder Include="Features\Technologies\Models" />
+        <Folder Include="Features\Technologies\Queries" />
+        <Folder Include="Features\Users\Models" />
+        <Folder Include="Features\Users\Queries" />
+        <Folder Include="Features\Users\Rules" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\corePackages\Core.Application\Core.Application.csproj"/>
-        <ProjectReference Include="..\..\..\corePackages\Core.CrossCuttingConcers\Core.CrossCuttingConcerns.csproj"/>
-        <ProjectReference Include="..\..\..\corePackages\Core.Persistence\Core.Persistence.csproj"/>
-        <ProjectReference Include="..\Domain\Domain.csproj"/>
+        <ProjectReference Include="..\..\..\corePackages\Core.Application\Core.Application.csproj" />
+        <ProjectReference Include="..\..\..\corePackages\Core.CrossCuttingConcers\Core.CrossCuttingConcerns.csproj" />
+        <ProjectReference Include="..\..\..\corePackages\Core.Persistence\Core.Persistence.csproj" />
+        <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
 </Project>

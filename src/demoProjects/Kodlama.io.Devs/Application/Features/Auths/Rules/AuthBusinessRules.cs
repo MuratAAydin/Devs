@@ -25,7 +25,7 @@ public class AuthBusinessRules
             throw new BusinessException("wrong password");
     }
 
-    public async Task UserEmailShouldBeNotExists(string email)
+    public async Task EmailCanNotBeDuplicatedWhenRegistered(string email)
     {
         User? user = await _userRepository.GetAsync(u => u.Email == email);
         if (user != null) throw new BusinessException("mail exists.");

@@ -40,8 +40,8 @@ public class LoginCommand : IRequest<LoggedDto>
             _authBusinessRules.UserShouldBeExists(user!);
             _authBusinessRules.CheckPassword(user!, request.UserForLoginDto.Password);
 
-            AccessToken createdAccessToken = await _authService.GenerateAccessToken(user!);
-            RefreshToken createdRefreshToken = await _authService.GenerateRefreshToken(user!, request.IpAddress!);
+            AccessToken createdAccessToken = await _authService.CreateAccessToken(user!);
+            RefreshToken createdRefreshToken = await _authService.CreateRefreshToken(user!, request.IpAddress!);
             LoggedDto loggedDto = new()
             {
                 AccessToken = createdAccessToken,
